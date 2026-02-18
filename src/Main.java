@@ -105,15 +105,16 @@ public class Main {
                     //SAIR
                     else if (opcao == 0) {
                         System.out.println("Encerrando...");
-                        break;
+                        return;
                     } else {
                         System.out.println("Opcao invalida!");
                     }
                 }
-                sc.close();
+
             } else {
                 System.out.println("senha invalida!!!\n");
             }
+            sc.close();
         }
     }
 
