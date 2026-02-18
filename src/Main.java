@@ -4,22 +4,23 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        double saldoInicial = 1000;
-        String usuario;
-        String senha = "123";
-        String continuar;
+        double saldoInicial = 1000; //saldo inicial
+        String usuario; // voce digita seu usuario
+        String senha = "123"; // senha padrao
+        String continuar; // para continuar S ou N
 
-        while (true) {
+        while (true) { // laço de repetição para o sistema do banco inteiro
+
             System.out.println("====> LOGIN <====");
 
             System.out.println("Antes de entrar na conta bancaria faça seu login.");
             System.out.println("Digite o seu nome: ");
-            usuario = sc.nextLine();
+            usuario = sc.nextLine(); // guarda o usuario que voce digita
             System.out.println("Digite sua senha (dica: 123): ");
-            senha = sc.nextLine();
+            senha = sc.nextLine(); // guarda a senha que voce digita
 
 
-            if (senha.equals("123")) {
+            if (senha.equals("123")) { // se a senha for igual 123 voce entra no programa, se nao ele volta pra tela de login
                 while (true) {
                     System.out.println("==== CONTA BANCARIA ====\n");
                     System.out.println("1 - Ver saldo");
@@ -27,7 +28,7 @@ public class Main {
                     System.out.println("3 - Sacar");
                     System.out.println("0 - Sair\n");
                     System.out.print("Escolha uma opcao: ");
-                    int opcao = sc.nextInt();
+                    int opcao = sc.nextInt(); // guarda a opção que o usuario escolheu
 
                     // VER SALDO
                     if (opcao == 1) {
@@ -40,11 +41,12 @@ public class Main {
                             System.out.print("Escolha: ");
                             continuar = sc.next();
 
-                            if (continuar.equalsIgnoreCase("S")) {
-                                break;
+                            if (continuar.equalsIgnoreCase("S")) { // se o continuar for s o usuario sai do loop e volta pro menu principal
+                                break; // quebra o while pra voltar pro menu
                             } else if (continuar.equalsIgnoreCase("N")) {
-                                return;
+                                return; // fecha o sistema
                             } else {
+                                // se nao digitar S nem N o sistema da opção invalida
                                 System.out.println("Opcao invalida!");
                             }
                         }
@@ -55,9 +57,9 @@ public class Main {
                         while (true) {
                             System.out.println("");
                             System.out.println("Olá " + usuario + " digite o quanto voce quer depositar: ");
-                            int grana = sc.nextInt();
+                            int grana = sc.nextInt(); // guarda o dinheiro que o usuario digita
 
-                            saldoInicial = depositar(saldoInicial, grana);
+                            saldoInicial = depositar(saldoInicial, grana); // aqui eu falo que o saldo inicial agora é igual o saldoInicial + a grana, metodo que eu criei no double depositar
                             System.out.println("Agora seu saldo é: " + saldoInicial + "\n");
 
                             System.out.println("Deseja voltar ao menu (S/N)?");
@@ -65,6 +67,7 @@ public class Main {
                             System.out.print("Escolha: ");
                             continuar = sc.next();
 
+                            //mesma logica de antes
                             if (continuar.equalsIgnoreCase("S")) {
                                 break;
                             } else if (continuar.equalsIgnoreCase("N")) {
@@ -80,13 +83,15 @@ public class Main {
                         while (true) {
                             System.out.println("");
                             System.out.println("Olá " + usuario + " digite o quanto voce quer sacar: ");
-                            int sacada = sc.nextInt();
+                            int sacada = sc.nextInt(); // guarda o tanto que o usuario quer sacar
 
-                            if (sacada > saldoInicial) {
+                            if (sacada > saldoInicial) { // se o valor que o usuario sacar for maior que o saldo, o codigo nao calcula e imprime que é impossivel sacar
                                 System.out.println("Impossivel sacar um valor maior que seu saldo.");
-                                break;
-                            } else {
+                                break; // quebra o while e volta pro menu principal
+                            } else { // se nao for maior ele saca o valor
                                 saldoInicial = sacar(saldoInicial, sacada); // percebi que se isso ficasse fora do if ele descontava o saldo mesmo com o if kkkkkkkkk
+
+                                //mesma logica de antes
                                 System.out.println("Agora seu saldo é: " + saldoInicial);
                                 System.out.println("Deseja voltar ao menu (S/N)?");
                                 System.out.println("Caso digite N voce encerrara o programa.");
@@ -105,23 +110,23 @@ public class Main {
                     //SAIR
                     else if (opcao == 0) {
                         System.out.println("Encerrando...");
-                        return;
+                        return; //encerra o sistema
                     } else {
                         System.out.println("Opcao invalida!");
                     }
                 }
 
-            } else {
+            } else { // se errar a senha ele volta pra tela de login
                 System.out.println("senha invalida!!!\n");
             }
-            sc.close();
+            sc.close(); // fechar o scanner
         }
     }
 
 
     public static double verSaldo(double saldoAtual) {
         return saldoAtual;
-    }
+    } 
 
     public static double depositar(double saldoAtual, double valorDeposito) {
         return saldoAtual + valorDeposito;
